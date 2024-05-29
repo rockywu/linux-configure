@@ -31,7 +31,7 @@ multiple_connector_ssh () {
         local PORT=${info[3]}
 
         # 尝试连接IP
-        nc -z -w 2 -G 2 $IP $PORT #// -w 兼容linux, -G 兼容masos
+        nc -z -w 2 -G 2 $IP $PORT >/dev/null 2>&1 #// -w 兼容linux, -G 兼容masos
         if [ $? -eq 0 ]; then
             echo "连接到IP: $IP:$PORT"
             auto_login_ssh $PASSWORD "$USERNAME@$IP -p $PORT"
